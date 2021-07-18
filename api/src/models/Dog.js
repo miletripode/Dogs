@@ -10,6 +10,10 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: Sequelize.UUIDV4
     },
+    img: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,

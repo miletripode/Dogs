@@ -34,7 +34,7 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(status).send(message);
 });
 
-server.get('/dog', getEightDogs);
+server.get('/dogs', getEightDogs);
 server.get('/dogs', breedsIncludesWord );
 server.get('/dogs/:idRaza', breedDetail );
 server.get('/temperament', getTemperaments );
