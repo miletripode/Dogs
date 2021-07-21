@@ -2,6 +2,7 @@ const { Dog, Temperament } = require('../db');
 const axios = require('axios').default;
 const {API_KEY} = process.env;
 const dogsApiUrl = ` https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
+const dogsApiName = `https://api.thedogapi.com/v1/breeds/search?api_key=${API_KEY}`
 
 /*[ ] GET /dogs:
 Obtener un listado de las primeras 8 razas de perro
@@ -12,15 +13,17 @@ desde la API como así también las de la base de datos.*/
 async function getEightDogs(req, res, next){
     try{ 
         let apiResponse = await axios(dogsApiUrl)
-        let dogsAPI = apiResponse.data.slice(0,8).map(d => {
+        let dogsAPI = apiResponse.data.map(d => {
             return{
+                id: d.id,
                 img: d.image.url,
                 name: d.name,
-                temperament: d.temperament
+                temperament: d.temperament,
+                weight: d.weight.metric
             }
         });
         let dogsDB = await Dog.findAll({ 
-            attributes: ["img","name"],
+            attributes: ["id","img","name"],
             include: Temperament
         });
         res.send(dogsAPI.concat(dogsDB))
@@ -35,21 +38,19 @@ Obtener un listado de las primeras 8 razas de perro que contengan la palabra ing
 como query parameter Si no existe ninguna raza de perro mostrar un mensaje adecuado*/
 async function breedsIncludesWord(req, res,next){
     try{
-        var name = req.query.name;
+        let name = req.query.name;
 
         let eightBreeds = await Dog.findAll({ 
+            where: { name: name },
             attributes: ["img","name"],
             include: Temperament
         })
 
         if(eightBreeds.length === 0){
-            res.send('no se encontraron razas de perro')
-
-        }else{
-            let responseAxios = await axios.get(dogsApiUrl)
-            let eight = responseAxios.data.filter(b => b.name.includes(name)).slice(0,8).map(b => {
+            let responseAxios = await axios.get(`${dogsApiName}&name=${name}`)
+            let eight = responseAxios.data.map(b => {
                 return {
-                    name: b.name,
+                    name: b.name
                 }
             });
             if(eight.length > 0){
@@ -76,33 +77,33 @@ Incluir los temperamentos asociados
 async function breedDetail(req, res, next){
     try {
     const  id  = req.params.idRaza
-    console.log(id)
     
     if( isNaN(id) ){
         let breedDB = await Dog.findOne({
             where: { id: id},
-            attributes: ['img', 'name', 'height', 'weight', 'life_span'],
+            attributes: ['id','img', 'name', 'height', 'weight', 'life_span'],
             include: {
                 model: Temperament,
                 attributes: ['name']
             }
         })
         if(breedDB){
-            return res.send(breedDB)
+            return res.send(Object.values(breedDB))
         }
     }else{
         let responseAxios = await axios.get(dogsApiUrl)
         let breed = responseAxios.data.find(b => b.id == id)
         if(breed){
             breed = {
+                id: id,
                 img: breed.image.url,
                 name: breed.name,
-                temperament: breed.temperament,
-                height: breed.height,
-                weight: breed.weight,
-                life_span: breed.life_span
+                height: breed.height.metric,
+                weight: breed.weight.metric,
+                life_span: breed.life_span,
+                temperament: breed.temperament
             }
-            return res.send(breed)
+            return res.send(Object.values(breed))
         }
     }
     return res.json({message: 'No se encontro ninguna raza con el id mandado'})

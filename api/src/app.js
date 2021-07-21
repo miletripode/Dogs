@@ -35,9 +35,11 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 });
 
 server.get('/dogs', getEightDogs);
+
 server.get('/dogs', breedsIncludesWord );
-server.get('/dogs/:idRaza', breedDetail );
+
+server.post('/dog', creatingBreed);
 server.get('/temperament', getTemperaments );
-server.post('/dog', creatingBreed  );
+server.get('/dogs/:idRaza', breedDetail );
 
 module.exports = server;
