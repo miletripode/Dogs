@@ -1,0 +1,53 @@
+.card{
+    margin: 40px;
+    position: relative;
+    height: 200px;
+    width: 300px;
+    box-shadow: 0 30px 40px -6px black;
+    float: left;
+}
+
+img{
+    width: 300px;
+    height: 200px;
+    margin-bottom: -4px;
+}
+
+.title{
+    font-weight:bold;
+    display: block;
+    text-align: center;
+    color: #FFEDD3;
+    background-color: #FF5C58;
+    padding: 2%;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+.temperaments{
+    display: block;
+    font-size: 20px;
+    position: absolute;
+    width: 300px;
+    height: 100px;
+    top: 0;
+    opacity: 0;
+    background-color: white;
+    overflow-y: scroll;
+    transition: 0.8s ease;
+}
+
+.temperaments::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.temperaments::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0,0,0,0.1);
+  }
+
+.card:hover .temperaments {
+    opacity: 1;
+    height: 100%;
+  }

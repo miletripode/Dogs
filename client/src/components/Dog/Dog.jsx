@@ -1,31 +1,18 @@
 import React from 'react';
+import styles from './Dog.module.css'
 
 export default function Dog({name, img, temperament }){
     return (
-      <div class="row">
-        <div class="col s12 m7">
-          <div class="card">
-            <div class="card-image">
-              <img src={img} width='200'/>
-              <span class="card-title">{name}</span>
-            </div>
-            <div class="card-content">
-              <p>{temperament}</p>
-            </div>
+      <div className={styles.card}>
+        <div className={styles.cardImage}>
+          <img src={img}/>
+          <div className={styles.title}>
+          <span>{name}</span>
           </div>
+        </div>
+        <div className={styles.temperaments}>
+          <p>{temperament}</p>
         </div>
       </div>
     )
 }
-
-{/* <div className= 'dog'>
-<div className="img">
-    <img src={img} alt='No especificado'/>
-</div>
-<div>
-    <h3>{name}</h3>
-</div>
-<div>
-    {temperament}
-</div>
-</div> */}
