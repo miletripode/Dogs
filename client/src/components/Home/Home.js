@@ -1,7 +1,7 @@
 import React from 'react';
 import './Home.css';
 import { connect } from "react-redux";
-import Dogs from './Dogs'
+import Dogs from '../Dogs/Dogs'
 
 function Home(props){
     return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { addDog } from '../actions/index';
+import { addDog } from '../../actions/index';
 import { connect } from 'react-redux';
 
 export function CreatingDog(props) {

@@ -1,7 +1,7 @@
 import React, {useEffect}  from 'react';
-import Dog from './Dog/Dog.jsx'
+import Dog from '../Dog/Dog.jsx'
 import { connect, useDispatch } from "react-redux";
-import { getDogs } from '../actions/index'
+import { getDogs } from '../../actions/index'
 
 function Dogs(props){
     const dispatch = useDispatch()
