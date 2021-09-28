@@ -10,7 +10,7 @@ Debe devolver solo los datos necesarios para la ruta principal
 IMPORTANTE: Dentro de la Ruta Principal se deben mostrar tanto las razas de perros traidas
 desde la API como así también las de la base de datos.*/
 
-async function getEightDogs(req, res, next){
+const getDogs = async (req, res, next) => {
     try{ 
         let apiResponse = await axios(dogsApiUrl)
         let dogsAPI = apiResponse.data.map(d => {
@@ -36,7 +36,7 @@ async function getEightDogs(req, res, next){
 /*[ ] GET /dogs?name="...":
 Obtener un listado de las primeras 8 razas de perro que contengan la palabra ingresada 
 como query parameter Si no existe ninguna raza de perro mostrar un mensaje adecuado*/
-async function breedsIncludesWord(req, res,next){
+const breedsIncludesWord = async(req, res,next) => {
     try{
         let name = req.query.name;
 
@@ -74,7 +74,7 @@ Incluir los temperamentos asociados
 [ ] Altura
 [ ] Peso
 [ ] Años de vida*/
-async function breedDetail(req, res, next){
+const breedDetail = async(req, res, next) => {
     try {
     const  id  = req.params.idRaza
     
@@ -116,7 +116,7 @@ async function breedDetail(req, res, next){
 /*[ ] POST /dog:
 Recibe los datos recolectados desde el formulario controlado de la ruta de creación de 
 raza de perro por body.Crea una raza de perro en la base de datos*/
-async function creatingBreed(req, res, next){
+const creatingBreed = async(req, res, next) => {
     try{
     const { img, name, height, weight, life_span, temperament} = req.body
     const breedCreated = await Dog.create({img, name, height, weight, life_span})
@@ -137,7 +137,7 @@ async function creatingBreed(req, res, next){
 }
 
 module.exports = {
-    getEightDogs,
+    getDogs,
     breedsIncludesWord,
     breedDetail,
     creatingBreed

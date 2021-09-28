@@ -1,5 +1,5 @@
 import React, {useEffect}  from 'react';
-import Dog from './Dog';
+import Dog from './Dog/Dog.jsx'
 import { connect, useDispatch } from "react-redux";
 import { getDogs } from '../actions/index'
 
