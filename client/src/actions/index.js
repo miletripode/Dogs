@@ -1,10 +1,3 @@
-/*ACTIONS DOGS
-getDogs ---> devuelve las primeras 8 razas de perros en la api + las de la DB
-getBreedDetail ---> recibe un id y devuelve el detalle de una raza en particular
-getDogsByName ---> recibe un nombre y devuelve las primeras 8 razas de perro con ese nombre
-getTemperaments ---> devuelve todos los temperamentos de la base de datos
-addDog ---> recibe info del formulario y crea un perro en la base de datos*/
-
 export function getDogs() {
     return function(dispatch) {
         fetch("http://localhost:3001/dogs")
@@ -15,9 +8,9 @@ export function getDogs() {
     };
 }
 
-export function getdDogDetail(id) {
+export function getDogDetail(id) {
   return function(dispatch) {
-    return fetch("http://localhost:3001/dogs/"+id)
+      fetch("http://localhost:3001/dogs/"+id)
       .then(response => response.json())
       .then(json => {
         dispatch({ type: "GET_DOG_DETAIL", payload: json });
@@ -25,10 +18,20 @@ export function getdDogDetail(id) {
   };
 }
 
-export function addDog(payload) {
-    return { type: "ADD_DOG", payload };
+export function getTemperaments() {
+  return function(dispatch) {
+      fetch("http://localhost:3001/temperaments")
+      .then(response => response.json())
+      .then(json => {
+        dispatch({ type: "GET_TEMPERAMENTS", payload: json });
+      });
+  };
 }
 
-// export function removeMovieFavorite(payload) {
-//     return { type: "REMOVE_MOVIE_FAVORITE", payload };
-// }
+export function addDog(payload) {
+  return { type: "ADD_DOG", payload };
+}
+
+export function orderAlphabetically(payload) {
+  return { type: "ORDER_ALPHABETICALLY", payload };
+}

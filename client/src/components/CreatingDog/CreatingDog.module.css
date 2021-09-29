@@ -1,0 +1,56 @@
+.background{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FCD2D1;
+    background-size: cover;
+    height: 100vh;
+}
+.box{
+    margin-top: -10px;
+    width: 500px;
+    height: 600px;
+    border: 1px solid;
+    border-color: #FF5C58;
+    background-color: #F8F0DF;
+}
+
+.formGroup{
+    display: flex;
+    margin-bottom: 2px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formGroup label {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: black;
+    display: flex;
+}
+
+.formGroup input {
+  all: unset;
+  padding: 6px;
+  border: 1px solid rgb(204, 204, 204);
+  transition: all 0.1s ease-in-out;
+  color: black;
+  width: 200px;
+}
+
+.formGroup input:focus{
+  border: 1px solid #FF5C58;
+  box-shadow: 0 0 0 3px rgb(255, 88, 88);
+}
+
+.formGroup button[type="submit"] {
+    all: unset;
+    background: #FF5C58;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 5px;
+}

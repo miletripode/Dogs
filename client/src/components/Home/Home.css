@@ -1,50 +1,6 @@
 .home{
     background-color: #FCD2D1;
     background-size: cover;
-    width: 100%;
-    height: 609px;
-    position: relative;
-}
-.navbar {
-    height: 56px;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-color: pink;
-    padding: 0 20px;
-    box-sizing: border-box;
-}
-
-.navbar nav {
-    height: 100%;
-}
-
-.list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    height: 100%;
-}
-
-.list-item {
-    display: flex;
-    align-content: center;
-    height: 70%;
     width: auto;
-    display: flex;
-    justify-content: space-around;
-}
-
-.list-item a {
-    color: white;
-    height: 100%;
-    padding: 10px 5px;
-    border-bottom: 4px solid transparent;
-    text-decoration:none;
-}
-
-.list-item a:hover,
-.list-item a.active {
-    background-color: magenta;
-    color: white;
+    height: 100vh;
 }

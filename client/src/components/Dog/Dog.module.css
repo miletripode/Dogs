@@ -1,9 +1,9 @@
 .card{
-    margin: 20px;
+    margin-bottom: 60px;
+    margin-left: 20px;
     position: relative;
     height: 200px;
     width: 300px;
-    box-shadow: 0 30px 40px -6px black;
     float: left;
 }
 
@@ -17,11 +17,15 @@ img{
     font-weight:bold;
     display: block;
     text-align: center;
-    color: #FFEDD3;
     background-color: #FF5C58;
     padding: 2%;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
+}
+
+.link{
+    text-decoration: none;
+    color: #FFEDD3;
 }
 
 .temperaments{
@@ -50,4 +54,4 @@ img{
 .card:hover .temperaments {
     opacity: 1;
     height: 100%;
-  }
+}

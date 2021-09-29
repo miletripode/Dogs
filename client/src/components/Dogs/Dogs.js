@@ -1,34 +1,61 @@
-import React, {useEffect}  from 'react';
+import React, {useEffect, useState}  from 'react';
 import Dog from '../Dog/Dog.jsx'
-import { connect, useDispatch } from "react-redux";
-import { getDogs } from '../../actions/index'
+import { useDispatch, useSelector } from "react-redux";
+import { getDogs, orderAlphabetically } from '../../actions/index'
+import Pagination from '../Pagination/Pagination.jsx';
+import styles from './Dogs.module.css'
+import Filters from '../Filters/Filters.jsx';
 
-function Dogs(props){
+
+export default function Dogs(props){
     const dispatch = useDispatch()
+    const dogs = useSelector((state) => state.dogs)
     useEffect(() => { dispatch(getDogs())}, []);
 
-   return (
-     <div className="dogs">
-       {props.dogs && props.dogs.map((dog)=>
-        <Dog 
-          name= {dog.name}
-          img= {dog.img}
-          temperament = {dog.temperament}
+    const [currentPage,setCurrentPage] = useState(1);
+    const [dogsPerPage,setDogsPerPage]= useState(8);
+    const indexOfLastDog = currentPage * dogsPerPage; 
+    const indexOfFirstDog = indexOfLastDog - dogsPerPage; 
+    const currentDogs = dogs.slice(indexOfFirstDog,indexOfLastDog)
+
+    const pagination = (pageNumber) => {
+      setCurrentPage(pageNumber);
+    }; 
+
+    const [orden, setOrden] = useState('')
+
+    function handleSortAlphabetically (e){
+      e.preventDefault();
+      dispatch(orderAlphabetically(e.target.value))
+      setCurrentPage(1);
+      setOrden(`Ordenado ${e.target.value}`)
+  };
+
+    return (
+      <div className={styles.box}>
+        <div>
+          <Filters 
+          handleSortAlphabetically={handleSortAlphabetically}/>
+        </div>
+        <div>
+        <div className={styles.dogs}>
+        { currentDogs && currentDogs.map(d => 
+          <Dog
+            name={d.name}
+            temperament={d.temperament}
+            img={d.img}
+            id={d.id}
+          />
+        )}
+        </div>
+        <div>
+        <Pagination
+          elementsPerPage={dogsPerPage}
+          allElements={dogs.length} 
+          pagination={pagination}
         />
-       )}
-     </div>
-   )
+        </div>
+      </div>
+      </div>
+    )
 }
-
-function mapStateToProps(state){
-  return{
-    dogs: state.dogs
-  }
-}
-function mapDispatchToProps(dispatch){
-  return{
-    getDogs: dogs => dispatch(getDogs(dogs)) 
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dogs);

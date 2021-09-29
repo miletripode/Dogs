@@ -1,0 +1,28 @@
+.filters{
+    margin-top: -30px;
+    margin-right: 60px;
+}
+
+.ul{
+    display: flex;
+    justify-content: center;
+}
+
+.select{
+    font-family: 'Open Sans', sans-serif;
+    border: none;
+    font-weight: 700;
+    height: 40px;
+}
+
+.select::-webkit-scrollbar{
+    width: 6px;
+}
+
+.select::-webkit-scrollbar-thumb{
+    background-color: #FF5C58;
+}
+
+option{
+    font-size: 15px;
+}

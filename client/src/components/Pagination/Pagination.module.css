@@ -1,0 +1,17 @@
+.number{
+    all: unset;
+    margin: 10px;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.number:focus {
+    color: #FF5C58;
+}
+
+.pagination{
+    float: right;
+    margin-right: 310px;
+    margin-top: -25px;
+    margin-bottom: 3px;
+}
